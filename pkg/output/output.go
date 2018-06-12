@@ -10,8 +10,8 @@ import (
 
 	"golang.org/x/tools/imports"
 
-	"github.com/cweill/gotests/internal/models"
-	"github.com/cweill/gotests/internal/render"
+	models "github.com/sniperkit/gotests/pkg/models"
+	render "github.com/sniperkit/gotests/pkg/render"
 )
 
 type Options struct {

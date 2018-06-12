@@ -1,6 +1,6 @@
 package testdata
 
-import "github.com/cweill/gotests"
+import "github.com/sniperkit/gotests/pkg"
 
 type someIndirectImportedStruct gotests.Options
 

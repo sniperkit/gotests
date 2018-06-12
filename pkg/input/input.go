@@ -2,11 +2,11 @@ package input
 
 import (
 	"fmt"
+	"os"
 	"path"
 	"path/filepath"
-	"os"
 
-	"github.com/cweill/gotests/internal/models"
+	models "github.com/sniperkit/gotests/pkg/models"
 )
 
 // Returns all the Golang files for the given path. Ignores hidden files.

@@ -10,10 +10,10 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/cweill/gotests/internal/goparser"
-	"github.com/cweill/gotests/internal/input"
-	"github.com/cweill/gotests/internal/models"
-	"github.com/cweill/gotests/internal/output"
+	goparser "github.com/sniperkit/gotests/pkg/goparser"
+	input "github.com/sniperkit/gotests/pkg/input"
+	models "github.com/sniperkit/gotests/pkg/models"
+	output "github.com/sniperkit/gotests/pkg/output"
 )
 
 // Options provides custom filters and parameters for generating tests.

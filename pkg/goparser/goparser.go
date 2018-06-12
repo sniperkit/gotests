@@ -12,7 +12,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/cweill/gotests/internal/models"
+	models "github.com/sniperkit/gotests/pkg/models"
 )
 
 // ErrEmptyFile represents an empty file error.
