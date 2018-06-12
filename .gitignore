@@ -20,3 +20,11 @@ dist
 dist/
 dist/*
 dist/**
+
+*.cov
+*.test
+
+.env
+
+.secrets*
+secrets*
