@@ -8,7 +8,7 @@ vendor/*
 vendor/**
 
 gotests
-
+!cmd/gotests
 cmd/gotests/gotests*
 
 bin
