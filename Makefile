@@ -55,9 +55,9 @@ ci: tests coverage
 
 tests:
 	@go test ./...
-	@go test -c -covermode=count -coverpkg=github.com/sniperkit/gotests/pkg,github.com/sniperkit/gotests/pkg/input,github.com/sniperkit/gotests/pkg/render,github.com/sniperkit/gotests/pkg/goparser,github.com/sniperkit/gotests/pkg/output,github.com/sniperkit/gotests/pkg/models
 
 coverage:
+	@go test -c -covermode=count -coverpkg=github.com/sniperkit/gotests/pkg,github.com/sniperkit/gotests/pkg/input,github.com/sniperkit/gotests/pkg/render,github.com/sniperkit/gotests/pkg/goparser,github.com/sniperkit/gotests/pkg/output,github.com/sniperkit/gotests/pkg/models
 	@./gotests.test -test.coverprofile coverage.cov
 	@goveralls -service=travis-ci -coverprofile=coverage.cov
 
