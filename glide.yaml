@@ -1,0 +1,5 @@
+package: github.com/sniperkit/gotests
+import:
+- package: golang.org/x/tools
+  subpackages:
+  - imports

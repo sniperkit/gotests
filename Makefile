@@ -22,7 +22,6 @@ fast: deps
 	@$(PROG_NAME) --version
 
 deps:
-	@go get -v -u github.com/mattn/go-sqlite3
 	@glide install --strip-vendor
 
 test:
