@@ -1,25 +1,50 @@
-.PHONY: all test clean man glide fast release install
+.PHONY: all test clean man fast release install version 
 
 GO15VENDOREXPERIMENT=1
 
 PROG_NAME := "gotests"
 
+# dirs
+DIST_DIR ?= ./dist
+WRK_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+
+# vcs
+GIT_BRANCH := $(subst heads/,,$(shell git rev-parse --abbrev-ref HEAD 2>/dev/null))
+
+# pkgs
+SRCS = $(shell git ls-files '*.go' | grep -v '^vendor/')
+PACKAGES = $(shell go list ./... | grep -v /vendor/)
+
+# VERSION = $(shell cat "$(WRK_DIR)/VERSION" | tr '\n' '')
+VERSION ?= $(shell git describe --tags)
+VERSION_INCODE = $(shell perl -ne '/^var version.*"([^"]+)".*$$/ && print "v$$1\n"' main.go)
+VERSION_INCHANGELOG = $(shell perl -ne '/^\# Release (\d+(\.\d+)+) / && print "$$1\n"' CHANGELOG.md | head -n1)
+VERSION_INFILE := $(shell cat $(CURDIR)/VERSION)
+
+VCS_GIT_REMOTE_URL = $(shell git config --get remote.origin.url)
+VCS_GIT_VERSION ?= $(VERSION)
+
+CURBIN := $(shell which $(PROG_NAME))
+
 all: deps test build install version
 
-build: deps
+build: semver
 	@go build -ldflags "-X main.VERSION=`cat VERSION`" -o ./bin/$(PROG_NAME) ./cmd/$(PROG_NAME)/*.go
+	@./bin/$(PROG_NAME) -version
 
-version: deps
-	@which $(PROG_NAME)
-	@$(PROG_NAME) --version
+semver:
+	@echo "Previous version: $(VERSION_INFILE)"
+	@echo "$(VERSION)" > $(CURDIR)/VERSION
+	@echo "Current version: $(VERSION)"
+	@echo "Current Install: $(CURBIN)"
 
-install: deps
+install: semver deps
 	@go install -ldflags "-X main.VERSION=`cat VERSION`" ./cmd/$(PROG_NAME)
-	@$(PROG_NAME) --version
+	@$(PROG_NAME) -version
 
 fast: deps
 	@go build -i -ldflags "-X main.VERSION=`cat VERSION`-dev" -o ./bin/$(PROG_NAME) ./cmd/$(PROG_NAME)/*.go
-	@$(PROG_NAME) --version
+	@$(PROG_NAME) -version
 
 deps:
 	@glide install --strip-vendor

@@ -1,0 +1,10 @@
+hash: 1af18f2727728635334e5651c99ce55ee49039066a57a32faac9c61e228b63c6
+updated: 2018-06-12T09:53:50.891938086+02:00
+imports:
+- name: golang.org/x/tools
+  version: 8c39fb57ad842377bfea6ab5eff7608e4e8f6765
+  subpackages:
+  - go/ast/astutil
+  - imports
+  - internal/fastwalk
+testImports: []
